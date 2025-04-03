@@ -5,6 +5,10 @@ public class Aluno {
 	private Integer id;
 	private String nome;
 	
+	public Aluno(Integer id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
 	public Integer getId() {
 		return id;
 	}

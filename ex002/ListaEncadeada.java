@@ -52,19 +52,31 @@ public class ListaEncadeada {
 	}
 
 	// Método para remover o último elemento
-	public void remover() {
+	public boolean remover(int id) {
 		if (primeiro == null) {
-			return; // Retorno a lista vazia
+			return false; // Retorno a lista vazia
 		}
 
-		if (primeiro.getProximo() == null) {
-			// Lista com apenas um elemento
-			primeiro = ultimo = null;
-		} else {
-			Celula penultimo = recuperarPenultimo(primeiro);
-			ultimo = penultimo;
-			penultimo.setProximo(null);
+		// Se o primeiro aluno for o que queremos remover
+		if (primeiro.getValor().getId() == id) {
+			primeiro = primeiro.getProximo(); // Atualiza o ponteiro
+
+			if (primeiro == null) {
+				ultimo = null;
+			}
+			return true;
 		}
+		
+		Celula atual = primeiro;
+		while (atual.getProximo() != null) {
+			if (atual.getProximo().getValor().getId() == id) {
+				atual.setProximo(atual.getProximo().getProximo()); // Remove a célula
+				return true;
+			}
+			atual = atual.getProximo();
+		}
+
+		return false; // Professor com o ID não foi encontrado
 	}
 
 	// Precisa criar Pesquisar, Listar e colocar em ordem alfabetica
@@ -127,6 +139,6 @@ public class ListaEncadeada {
 					atual = proximo;
 				}
 			}
-		} while (trocou); //Repete enquanto estiver tendo trocas nas celulas
+		} while (trocou); // Repete enquanto estiver tendo trocas nas celulas
 	}
 }
