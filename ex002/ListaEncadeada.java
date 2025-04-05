@@ -44,12 +44,7 @@ public class ListaEncadeada {
 		return posicaoAtual;
 	}
 
-	private Celula recuperarPenultimo(Celula celula) {
-		if (celula.getProximo() == ultimo) {
-			return celula;
-		}
-		return recuperarPenultimo(celula.getProximo());
-	}
+	
 
 	// Método para remover o último elemento
 	public boolean remover(int id) {
